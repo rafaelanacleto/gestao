@@ -33,15 +33,14 @@
 
             <div class="mb-3">
                 <div class="float-end">
-                    <a href="Account/ForgotPassword" class="text-muted">Forgot password?</a>
+                    <a href="Account/ForgotPassword" class="text-muted">Esqueceu a senha?</a>
                 </div>
-                
+                <label class="form-label" for="password">Senha</label>
                 <div class="position-relative auth-pass-inputgroup mb-3">
-                    <InputText type="password" @bind-Value="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" />
-                    <label for="password" class="form-label">Password</label>
-                    <ValidationMessage For="() => Input.Password" class="text-danger" />
+                    <InputText type="password" id="password" @bind-Value="Input.Password" class="form-control pe-5 password-input" autocomplete="current-password" aria-required="true" placeholder="Digite sua senha" />
                     <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon material-shadow-none" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
                 </div>
+                <ValidationMessage For="() => Input.Password" class="invalid-feedback" />
             </div>
 
             <div class="form-check">
@@ -50,12 +49,12 @@
             </div>
 
             <div class="mt-4">
-                <button class="btn btn-success w-100" type="submit">Sign In</button>
+                <button class="btn btn-success w-100" type="submit">Entrar</button>
             </div>
 
             <div class="mt-4 text-center">
                 <div class="signin-other-title">
-                    <h5 class="fs-13 mb-4 title">Sign In with</h5>
+                    <h5 class="fs-13 mb-4 title">Entrar com ...</h5>
                 </div>
 
                 <div>
