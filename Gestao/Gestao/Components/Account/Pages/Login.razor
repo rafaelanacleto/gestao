@@ -69,7 +69,7 @@
     </div>
 
     <div class="mt-5 text-center">
-        <p class="mb-0">Don't have an account ? <a href="auth-signup-cover.html @(NavigationManager.GetUriWithQueryParameters("Account/Register", new Dictionary<string, object?> { ["ReturnUrl"] = ReturnUrl }))" class="fw-semibold text-primary text-decoration-underline"> Signup</a> </p>
+        <p class="mb-0">Não tem uma conta? <a href="auth-signup-cover.html @(NavigationManager.GetUriWithQueryParameters("Account/Register", new Dictionary<string, object?> { ["ReturnUrl"] = ReturnUrl }))" class="fw-semibold text-primary text-decoration-underline"> Signup</a> </p>
     </div>
 </div>
 
@@ -101,7 +101,7 @@
         var result = await SignInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
         if (result.Succeeded)
         {
-            Logger.LogInformation("User logged in.");
+            Logger.LogInformation("Usuário logado.");
             RedirectManager.RedirectTo(ReturnUrl);
         }
         else if (result.RequiresTwoFactor)
@@ -112,12 +112,12 @@
         }
         else if (result.IsLockedOut)
         {
-            Logger.LogWarning("User account locked out.");
+            Logger.LogWarning("Conta de usuário bloqueada.");
             RedirectManager.RedirectTo("Account/Lockout");
         }
         else
         {
-            errorMessage = "Error: Invalid login attempt.";
+            errorMessage = "Erro: tentativa de login inválida.";
         }
     }
 
