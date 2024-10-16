@@ -81,7 +81,7 @@
         </div>
 
         <div class="mt-5 text-center">
-            <p class="mb-0">Already have an account ? <a href="auth-signin-cover.html" class="fw-semibold text-primary text-decoration-underline"> Signin</a> </p>
+        <p class="mb-0">Já tem uma conta ? <a href="@(NavigationManager.GetUriWithQueryParameters("Account/Login", new Dictionary<string, object?> { ["ReturnUrl"] = ReturnUrl }))" class="fw-semibold text-primary text-decoration-underline"> Signin</a> </p>
         </div>
     </div>
 

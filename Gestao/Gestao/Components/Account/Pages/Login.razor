@@ -69,7 +69,7 @@
     </div>
 
     <div class="mt-5 text-center">
-        <p class="mb-0">Não tem uma conta? <a href="auth-signup-cover.html @(NavigationManager.GetUriWithQueryParameters("Account/Register", new Dictionary<string, object?> { ["ReturnUrl"] = ReturnUrl }))" class="fw-semibold text-primary text-decoration-underline"> Signup</a> </p>
+        <p class="mb-0">Não tem uma conta? <a href="@(NavigationManager.GetUriWithQueryParameters("Account/Register", new Dictionary<string, object?> { ["ReturnUrl"] = ReturnUrl }))" class="fw-semibold text-primary text-decoration-underline"> Inscrever-se</a> </p>
     </div>
 </div>
 
