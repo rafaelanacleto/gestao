@@ -33,6 +33,39 @@
     </div>
 </div>
 
+<div class="p-lg-5 p-4">
+    <h5 class="text-primary">Esqueceu senha?</h5>
+    <p class="text-muted">Reset de senha da conta</p>
+
+    <div class="mt-2 text-center">
+        <lord-icon src="https://cdn.lordicon.com/rhvddzym.json" trigger="loop" colors="primary:#0ab39c" class="avatar-xl">
+        </lord-icon>
+    </div>
+
+    <div class="alert border-0 alert-warning text-center mb-2 mx-2" role="alert">
+        Digite seu e-mail e as instruções serão enviadas para você!
+    </div>
+    <div class="p-2">
+        <EditForm Model="Input" FormName="forgot-password" OnValidSubmit="OnValidSubmitAsync" method="post">
+            <DataAnnotationsValidator />
+            <ValidationSummary class="text-danger" role="alert" />
+            <div class="mb-4">
+                <InputText @bind-Value="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                <label for="email" class="form-label">Email</label>
+                <ValidationMessage For="() => Input.Email" class="text-danger" />
+            </div>
+
+            <div class="text-center mt-4">
+                <button class="btn btn-success w-100" type="submit">Enviar link de redefinição</button>
+            </div>
+        </EditForm>
+    </div>
+
+    <div class="mt-5 text-center">
+        <p class="mb-0">Espere, eu lembro da minha senha...  <a href="Account/Login" class="fw-semibold text-primary text-decoration-underline">  Click Aqui </a> </p>
+    </div>
+</div>
+
 @code {
     private string? message;
 
