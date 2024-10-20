@@ -6,6 +6,7 @@
 @using Microsoft.AspNetCore.Identity
 @using Microsoft.AspNetCore.WebUtilities
 @using Gestao.Data
+@layout Gestao.Components.Layout.Default.DefaultLayout
 
 @inject UserManager<ApplicationUser> UserManager
 @inject IEmailSender<ApplicationUser> EmailSender
@@ -16,7 +17,7 @@
 
 <h1>Resend email confirmation</h1>
 <h2>Enter your email.</h2>
-<hr />
+@* <hr />
 <StatusMessage Message="@message" />
 <div class="row">
     <div class="col-md-4">
@@ -31,7 +32,7 @@
             <button type="submit" class="w-100 btn btn-lg btn-primary">Resend</button>
         </EditForm>
     </div>
-</div>
+</div> *@
 
 <div class="p-lg-5 p-4">
     <h5 class="text-primary">Esqueceu senha?</h5>
@@ -46,18 +47,15 @@
         Digite seu e-mail e as instruções serão enviadas para você!
     </div>
     <div class="p-2">
-        <EditForm Model="Input" FormName="forgot-password" OnValidSubmit="OnValidSubmitAsync" method="post">
+        <EditForm Model="Input" FormName="resend-email-confirmation" OnValidSubmit="OnValidSubmitAsync" method="post">
             <DataAnnotationsValidator />
             <ValidationSummary class="text-danger" role="alert" />
-            <div class="mb-4">
-                <InputText @bind-Value="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+            <div class="form-floating mb-3">
+                <InputText @bind-Value="Input.Email" class="form-control" aria-required="true" placeholder="name@example.com" />
                 <label for="email" class="form-label">Email</label>
                 <ValidationMessage For="() => Input.Email" class="text-danger" />
             </div>
-
-            <div class="text-center mt-4">
-                <button class="btn btn-success w-100" type="submit">Enviar link de redefinição</button>
-            </div>
+            <button type="submit" class="w-100 btn btn-lg btn-primary">Resend</button>
         </EditForm>
     </div>
 
