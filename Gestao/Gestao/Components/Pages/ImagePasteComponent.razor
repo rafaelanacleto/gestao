@@ -1,0 +1,32 @@
+﻿@page "/imagepaste"
+@inject IJSRuntime JSRuntime
+
+<input type="file" @ref="inputFile" style="display: grid;" @onchange="UploadFile" />
+<img id="pastedImage" style="max-width: 100%;" />
+
+@code {
+    private ElementReference inputFile;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("ImagePasteComponent.init", inputFile);
+        }
+    }
+
+    private async Task UploadFile(ChangeEventArgs e)
+    {
+        var files = (e.Value as Microsoft.AspNetCore.Components.Forms.IBrowserFile[]);
+        if (files.Length > 0)
+        {
+            var file = files[0];
+            using var stream = file.OpenReadStream();
+            using var memoryStream = new MemoryStream();
+            await stream.CopyToAsync(memoryStream);
+            var base64 = Convert.ToBase64String(memoryStream.ToArray());
+            var imageSrc = $"data:image/png;base64,{base64}";
+            await JSRuntime.InvokeVoidAsync("ImagePasteComponent.setImage", imageSrc);
+        }
+    }
+}
