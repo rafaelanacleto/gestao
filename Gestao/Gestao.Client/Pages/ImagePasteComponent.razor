@@ -1,4 +1,6 @@
 ﻿@page "/imagepaste"
+@attribute [StreamRendering]
+@rendermode InteractiveAuto
 @inject IJSRuntime JSRuntime
 
 <input type="file" @ref="inputFile" style="display: grid;" @onchange="UploadFile" />
