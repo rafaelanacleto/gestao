@@ -48,8 +48,7 @@
                                    if (items[i].kind === 'file' && items[i].type.indexOf('image') !== -1) {
                                        var blob = items[i].getAsFile();
                                        var url = URL.createObjectURL(blob);
-                                       document.getElementById('pastedImage').src = url;
-                                       console.log(url);
+                                       document.getElementById('pastedImage').src = url;                                      
                                        var input = inputFile;
                                        var dt = new DataTransfer();
                                        dt.items.add(blob);
@@ -60,8 +59,7 @@
                        });
                    },
                    setImage: function (imageSrc) {
-                       document.getElementById('pastedImage').src = imageSrc;
-                       console.log(imageSrc);
+                       document.getElementById('pastedImage').src = imageSrc;                      
                    }
                };
     </script>
