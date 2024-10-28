@@ -4,29 +4,47 @@
 @using Microsoft.AspNetCore.Identity
 @using Microsoft.AspNetCore.WebUtilities
 @using Gestao.Data
+@layout Gestao.Components.Layout.Default.DefaultLayout
 
 @inject UserManager<ApplicationUser> UserManager
 @inject IEmailSender<ApplicationUser> EmailSender
 @inject NavigationManager NavigationManager
 @inject IdentityRedirectManager RedirectManager
 
-<PageTitle>Register confirmation</PageTitle>
+<PageTitle>Confirmação de cadastro</PageTitle>
 
-<h1>Register confirmation</h1>
 
-<StatusMessage Message="@statusMessage" />
 
-@if (emailConfirmationLink is not null)
-{
-    <p>
-        This app does not currently have a real email sender registered, see <a href="https://aka.ms/aspaccountconf">these docs</a> for how to configure a real email sender.
-        Normally this would be emailed: <a href="@emailConfirmationLink">Click here to confirm your account</a>
-    </p>
-}
-else
-{
-    <p>Please check your email to confirm your account.</p>
-}
+<div class="p-lg-5 p-4">
+    <h5 class="text-primary">Esqueceu senha?</h5>
+    <p class="text-muted">Reset de senha da conta</p>
+
+    <div class="mt-2 text-center">
+        <lord-icon src="https://cdn.lordicon.com/rhvddzym.json" trigger="loop" colors="primary:#0ab39c"
+            class="avatar-xl">
+        </lord-icon>
+    </div>
+
+    <div class="alert border-0 alert-warning text-center mb-2 mx-2" role="alert">
+        Digite seu e-mail e as instruções serão enviadas para você!
+    </div>
+    <div class="p-2">
+        <StatusMessage Message="@statusMessage" />
+
+        @if (emailConfirmationLink is not null)
+        {
+            <p>
+                This app does not currently have a real email sender registered, see <a
+                    href="https://aka.ms/aspaccountconf">these docs</a> for how to configure a real email sender.
+                Normally this would be emailed: <a href="@emailConfirmationLink">Click here to confirm your account</a>
+            </p>
+        }
+        else
+        {
+            <p>Please check your email to confirm your account.</p>
+        }
+    </div>   
+</div>
 
 @code {
     private string? emailConfirmationLink;
@@ -61,8 +79,8 @@ else
             var code = await UserManager.GenerateEmailConfirmationTokenAsync(user);
             code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
             emailConfirmationLink = NavigationManager.GetUriWithQueryParameters(
-                NavigationManager.ToAbsoluteUri("Account/ConfirmEmail").AbsoluteUri,
-                new Dictionary<string, object?> { ["userId"] = userId, ["code"] = code, ["returnUrl"] = ReturnUrl });
+            NavigationManager.ToAbsoluteUri("Account/ConfirmEmail").AbsoluteUri,
+            new Dictionary<string, object?> { ["userId"] = userId, ["code"] = code, ["returnUrl"] = ReturnUrl });
         }
     }
 }
