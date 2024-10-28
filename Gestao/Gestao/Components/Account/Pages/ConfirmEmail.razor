@@ -4,14 +4,34 @@
 @using Microsoft.AspNetCore.Identity
 @using Microsoft.AspNetCore.WebUtilities
 @using Gestao.Data
+@layout Gestao.Components.Layout.Default.DefaultLayout
 
 @inject UserManager<ApplicationUser> UserManager
 @inject IdentityRedirectManager RedirectManager
 
 <PageTitle>Confirm email</PageTitle>
 
-<h1>Confirm email</h1>
-<StatusMessage Message="@statusMessage" />
+<div class="p-lg-5 p-4">
+    <h5 class="text-primary">E-mail confirmado o/</h5>    
+
+    <div class="mt-2 text-center">
+        <lord-icon src="https://cdn.lordicon.com/rhvddzym.json" trigger="loop" colors="primary:#0ab39c"
+            class="avatar-xl">
+        </lord-icon>
+    </div>
+
+    <div class="alert border-0 alert-warning text-center mb-2 mx-2" role="alert">
+        Digite seu e-mail e as instruções serão enviadas para você!
+    </div>
+    <div class="p-2">
+        <h1>Confirm email</h1>
+        <StatusMessage Message="@statusMessage" />
+    </div>
+
+    <div class="mt-5 text-center">
+        <p class="mb-0"><a href="/"  class="fw-semibold text-primary text-decoration-underline"> Click Aqui </a> </p>
+    </div>
+</div>
 
 @code {
     private string? statusMessage;
