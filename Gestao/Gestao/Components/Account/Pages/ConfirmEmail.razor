@@ -9,41 +9,35 @@
 @inject UserManager<ApplicationUser> UserManager
 @inject IdentityRedirectManager RedirectManager
 
-<PageTitle>Confirm email</PageTitle>
+<PageTitle>E-mail confirmado</PageTitle>
+
 
 <div class="p-lg-5 p-4">
-    <h5 class="text-primary">E-mail confirmado o/</h5>    
+    <h5 class="text-primary">E-mail confirmado</h5>
 
     <div class="mt-2 text-center">
-        <lord-icon src="https://cdn.lordicon.com/rhvddzym.json" trigger="loop" colors="primary:#0ab39c"
-            class="avatar-xl">
+        <lord-icon src="https://cdn.lordicon.com/rhvddzym.json" trigger="loop" colors="primary:#0ab39c" class="avatar-xl">
         </lord-icon>
     </div>
-
-    <div class="alert border-0 alert-warning text-center mb-2 mx-2" role="alert">
-        Digite seu e-mail e as instruções serão enviadas para você!
-    </div>
     <div class="p-2">
-        <h1>Confirm email</h1>
-        <StatusMessage Message="@statusMessage" />
+        <StatusMessage Message="@statusMessage"/>
     </div>
 
     <div class="mt-5 text-center">
-        <p class="mb-0"><a href="/"  class="fw-semibold text-primary text-decoration-underline"> Click Aqui </a> </p>
+        <p class="mb-0">
+            <a href="/Account/Login" class="fw-semibold text-primary text-decoration-underline"> Voltar </a>
+        </p>
     </div>
 </div>
 
 @code {
     private string? statusMessage;
 
-    [CascadingParameter]
-    private HttpContext HttpContext { get; set; } = default!;
+    [CascadingParameter] private HttpContext HttpContext { get; set; } = default!;
 
-    [SupplyParameterFromQuery]
-    private string? UserId { get; set; }
+    [SupplyParameterFromQuery] private string? UserId { get; set; }
 
-    [SupplyParameterFromQuery]
-    private string? Code { get; set; }
+    [SupplyParameterFromQuery] private string? Code { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -65,4 +59,5 @@
             statusMessage = result.Succeeded ? "Thank you for confirming your email." : "Error confirming your email.";
         }
     }
+
 }
