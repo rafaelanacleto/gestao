@@ -10,17 +10,17 @@ public class EmailSender(ILogger<EmailSender> logger) : IEmailSender<Application
     private readonly ILogger logger = logger;
 
     public Task SendConfirmationLinkAsync(ApplicationUser user, string email,
-        string confirmationLink) => SendEmailAsync(email, "Confirm your email",
-        "Please confirm your account by " +
-        $"<a href='{confirmationLink}'>clicking here</a>.");
+        string confirmationLink) => SendEmailAsync(email, "Confirme seu e-mail",
+        "Por favor confirme sua conta até " +
+        $"<a href='{confirmationLink}'>clicando aqui</a>.");
 
     public Task SendPasswordResetLinkAsync(ApplicationUser user, string email,
-        string resetLink) => SendEmailAsync(email, "Reset your password",
-        $"Please reset your password by <a href='{resetLink}'>clicking here</a>.");
+        string resetLink) => SendEmailAsync(email, "Reset sua senha",
+        $"Por favor, redefina sua senha até <a href='{resetLink}'>clicando aqui</a>.");
 
     public Task SendPasswordResetCodeAsync(ApplicationUser user, string email,
-        string resetCode) => SendEmailAsync(email, "Reset your password",
-        $"Please reset your password using the following code: {resetCode}");
+        string resetCode) => SendEmailAsync(email, "Reset sua senha",
+        $"Por favor, redefina sua senha usando o seguinte código: {resetCode}");
 
     public async Task SendEmailAsync(string toEmail, string subject, string message)
     {
@@ -37,6 +37,6 @@ public class EmailSender(ILogger<EmailSender> logger) : IEmailSender<Application
             subject, message);
         await api.Messages.SendAsync(mandrillMessage);
         */
-        logger.LogInformation("Email to {EmailAddress} sent!", toEmail);
+        logger.LogInformation("Email to {EmailAddress} enviado!", toEmail);
     }
 }
