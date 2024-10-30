@@ -1,3 +1,4 @@
+using System.Net.Mail;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 
@@ -11,16 +12,16 @@ public class EmailSender(ILogger<EmailSender> logger) : IEmailSender<Application
 
     public Task SendConfirmationLinkAsync(ApplicationUser user, string email,
         string confirmationLink) => SendEmailAsync(email, "Confirme seu e-mail",
-        "Por favor confirme sua conta até " +
+        "Por favor confirme sua conta ate " +
         $"<a href='{confirmationLink}'>clicando aqui</a>.");
 
     public Task SendPasswordResetLinkAsync(ApplicationUser user, string email,
         string resetLink) => SendEmailAsync(email, "Reset sua senha",
-        $"Por favor, redefina sua senha até <a href='{resetLink}'>clicando aqui</a>.");
+        $"Por favor, redefina sua senha ate <a href='{resetLink}'>clicando aqui</a>.");
 
     public Task SendPasswordResetCodeAsync(ApplicationUser user, string email,
         string resetCode) => SendEmailAsync(email, "Reset sua senha",
-        $"Por favor, redefina sua senha usando o seguinte código: {resetCode}");
+        $"Por favor, redefina sua senha usando o seguinte codigo: {resetCode}");
 
     public async Task SendEmailAsync(string toEmail, string subject, string message)
     {
@@ -37,6 +38,11 @@ public class EmailSender(ILogger<EmailSender> logger) : IEmailSender<Application
             subject, message);
         await api.Messages.SendAsync(mandrillMessage);
         */
+        
+        MailMessage mail = new MailMessage();
+        mail.From = new MailAddress(toEmail);
+        mail.Subject = subject;
+        
         logger.LogInformation("Email to {EmailAddress} enviado!", toEmail);
     }
 }
