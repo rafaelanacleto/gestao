@@ -6,9 +6,11 @@ using Gestao.Data;
 
 namespace Gestao.Libraries.Email;
 
-public class EmailSender(ILogger<EmailSender> logger) : IEmailSender<ApplicationUser>
+public class EmailSender(ILogger<EmailSender> logger, IConfiguration configuration, SmtpClient smtp) : IEmailSender<ApplicationUser>
 {
     private readonly ILogger logger = logger;
+    private readonly SmtpClient smtp = smtp;
+    private readonly IConfiguration configuration = configuration;
 
     public Task SendConfirmationLinkAsync(ApplicationUser user, string email,
         string confirmationLink) => SendEmailAsync(email, "Confirme seu e-mail",
@@ -31,18 +33,15 @@ public class EmailSender(ILogger<EmailSender> logger) : IEmailSender<Application
     public async Task Execute(string subject, string message,
         string toEmail)
     {
-        /*
-          Substituir mandril pelo smtp - gmail
-        var api = new MandrillApi(apiKey);
-        var mandrillMessage = new MandrillMessage("sarah@contoso.com", toEmail,
-            subject, message);
-        await api.Messages.SendAsync(mandrillMessage);
-        */
-        
         MailMessage mail = new MailMessage();
-        mail.From = new MailAddress(toEmail);
+        mail.From = new MailAddress(configuration.GetValue<string>("EmailSender:User")!);
+        mail.To.Add(new MailAddress(toEmail));
         mail.Subject = subject;
-        
+        mail.Body = message;
+        mail.IsBodyHtml = true;
+
+        await smtp.SendMailAsync(mail);
+
         logger.LogInformation("Email to {EmailAddress} enviado!", toEmail);
     }
 }
