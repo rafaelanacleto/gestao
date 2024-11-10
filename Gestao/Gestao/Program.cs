@@ -1,3 +1,5 @@
+using System.Net;
+using System.Net.Mail;
 using Gestao.Client.Pages;
 using Gestao.Components;
 using Gestao.Components.Account;
@@ -41,6 +43,21 @@ namespace Gestao
                 .AddSignInManager()
                 .AddDefaultTokenProviders();
 
+
+            builder.Services.AddSingleton<SmtpClient>(options =>
+            {
+                var smtp = new SmtpClient();
+                smtp.Host = builder.Configuration.GetValue<string>("EmailSender:Server")!;
+                smtp.Port = builder.Configuration.GetValue<int>("EmailSender:Port");
+                smtp.EnableSsl = builder.Configuration.GetValue<bool>("EmailSender:SSL");
+
+                smtp.Credentials = new NetworkCredential(
+                    builder.Configuration.GetValue<string>("EmailSender:User"),
+                    builder.Configuration.GetValue<string>("EmailSender:Password")
+                );
+
+                return smtp;
+            });
             builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSender>();
 
             var app = builder.Build();
