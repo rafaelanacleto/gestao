@@ -16,13 +16,13 @@
 @inject NavigationManager NavigationManager
 @inject IdentityRedirectManager RedirectManager
 
-<PageTitle>Register</PageTitle>
+<PageTitle>Cadastre-se</PageTitle>
 
- <div class="p-lg-5 p-4">
-        <div>
-            <h5 class="text-primary">Register Account</h5>
-            <p class="text-muted">Get your Free Velzon account now.</p>
-        </div>
+<div class="p-lg-5 p-4">
+    <div>
+        <h5 class="text-primary">Cadastre-se</h5>
+        <p class="text-muted">Faça o seu cadastro na plataforma.</p>
+    </div>
 
         <div class="mt-4">
             <EditForm Model="Input" asp-route-returnUrl="@ReturnUrl" method="post" OnValidSubmit="RegisterUser" FormName="register">
@@ -50,7 +50,7 @@
                 </div>
 
                 <div class="mb-4">
-                    <p class="mb-0 fs-12 text-muted fst-italic">By registering you agree to the Velzon <a href="#" class="text-primary text-decoration-underline fst-normal fw-medium">Terms of Use</a></p>
+                    <p class="mb-0 fs-12 text-muted fst-italic">Ao se cadastrar você aceita os <a href="#" class="text-primary text-decoration-underline fst-normal fw-medium">Termos de uso</a></p>
                 </div>
 
                 <div id="password-contain" class="p-3 bg-light mb-2 rounded">
@@ -85,40 +85,6 @@
         </div>
     </div>
 
-@* <div class="row">
-    <div class="col-md-4">
-        <StatusMessage Message="@Message" />
-        <EditForm Model="Input" asp-route-returnUrl="@ReturnUrl" method="post" OnValidSubmit="RegisterUser" FormName="register">
-            <DataAnnotationsValidator />
-            <h2>Create a new account.</h2>
-            <hr />
-            <ValidationSummary class="text-danger" role="alert" />
-            <div class="form-floating mb-3">
-                <InputText @bind-Value="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
-                <label for="email">Email</label>
-                <ValidationMessage For="() => Input.Email" class="text-danger" />
-            </div>
-            <div class="form-floating mb-3">
-                <InputText type="password" @bind-Value="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                <label for="password">Password</label>
-                <ValidationMessage For="() => Input.Password" class="text-danger" />
-            </div>
-            <div class="form-floating mb-3">
-                <InputText type="password" @bind-Value="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                <label for="confirm-password">Confirm Password</label>
-                <ValidationMessage For="() => Input.ConfirmPassword" class="text-danger" />
-            </div>
-            <button type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
-        </EditForm>
-    </div>
-    <div class="col-md-6 col-md-offset-2">
-        <section>
-            <h3>Use another service to register.</h3>
-            <hr />
-            <ExternalLoginPicker />
-        </section>
-    </div>
-</div> *@
 
 @code {
     private IEnumerable<IdentityError>? identityErrors;

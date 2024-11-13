@@ -4,6 +4,7 @@ using Gestao.Client.Pages;
 using Gestao.Components;
 using Gestao.Components.Account;
 using Gestao.Data;
+using Gestao.Libraries.Email;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -58,7 +59,7 @@ namespace Gestao
 
                 return smtp;
             });
-            builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSender>();
+            builder.Services.AddSingleton<IEmailSender<ApplicationUser>, EmailSender>();
 
             var app = builder.Build();
 

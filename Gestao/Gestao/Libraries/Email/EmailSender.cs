@@ -41,7 +41,6 @@ public class EmailSender(ILogger<EmailSender> logger, IConfiguration configurati
         mail.IsBodyHtml = true;
 
         await smtp.SendMailAsync(mail);
-
         logger.LogInformation("Email to {EmailAddress} enviado!", toEmail);
     }
 }
