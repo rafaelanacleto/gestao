@@ -40,7 +40,10 @@ public class EmailSender(ILogger<EmailSender> logger, IConfiguration configurati
         mail.Body = message;
         mail.IsBodyHtml = true;
 
+        smtp.EnableSsl = true;
+        smtp.UseDefaultCredentials = true;
         await smtp.SendMailAsync(mail);
+        
         logger.LogInformation("Email to {EmailAddress} enviado!", toEmail);
     }
 }
